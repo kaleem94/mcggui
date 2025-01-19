@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCG GUI Test</title>
+  <link rel="stylesheet" href="styles.min.css">
+</head>
+<body>
+  <div id="root"></div>
+  <!-- Use Node packages during development -->
+  <% if (!htmlWebpackPlugin.options.cdn) { %>
+  <script src="../node_modules/rete/build/rete.min.js"></script>
+  <script src="../node_modules/rete-connection-plugin/build/connection-plugin.min.js"></script>
+  <script src="../node_modules/rete-vue-render-plugin/build/vue-render-plugin.min.js"></script>
+  <script src="../node_modules/rete-context-menu-plugin/build/context-menu-plugin.min.js"></script>
+  <% } else { %>
+  <!-- Use CDN during production -->
+  <script src="<%= htmlWebpackPlugin.options.cdn.rete %>"></script>
+  <script src="<%= htmlWebpackPlugin.options.cdn.connectionPlugin %>"></script>
+  <script src="<%= htmlWebpackPlugin.options.cdn.vueRenderPlugin %>"></script>
+  <script src="<%= htmlWebpackPlugin.options.cdn.contextMenuPlugin %>"></script>
+  <% } %>
+  <script src="script.min.js"></script>
+</body>
+</html>

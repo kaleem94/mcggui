@@ -1,0 +1,40 @@
+{
+  "name": "mcggui",
+  "version": "1.0.0",
+  "description": "A Node.js library for MCG GUI",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node test/test.js",
+    "build": "npx webpack --mode production",
+    "start": "npx webpack serve --mode development",
+    "build:css": "npx clean-css-cli -o public/styles.min.css src/styles.css",
+    "build:js": "npx terser src/script.js -o public/script.min.js",
+    "copy:html": "cp src/index.html public/index.html"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "rete": "^1.4.4",
+    "rete-connection-plugin": "^0.9.0",
+    "rete-vue-render-plugin": "^0.3.0",
+    "core-js": "^3.18.3",
+    "regenerator-runtime": "^0.13.9",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rete-context-menu-plugin": "^0.3.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1",
+    "html-webpack-plugin": "^5.3.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "babel-loader": "^8.2.2",
+    "@babel/preset-react": "^7.14.5",
+    "css-loader": "^6.2.0",
+    "style-loader": "^3.2.1"
+  }
+}
