@@ -49,43 +49,17 @@ const App = () => {
             editor.trigger('process');
             container.addEventListener('resize', () => editor.view.resize());
 
-            container.addEventListener('dragover', (event) => {
-                event.preventDefault();
-            });
-
-            container.addEventListener('drop', async (event) => {
-                event.preventDefault();
-                const componentName = event.dataTransfer.getData('component');
-                const component = components.find(c => c.name === componentName);
-                if (component) {
-                    const node = await component.createNode({ num: 0 });
-                    node.position = [event.offsetX, event.offsetY];
-                    editor.addNode(node);
-                    editor.trigger('process');
-                }
-            });
+            const defaultNode = await components[0].createNode({ num: 0 });
+            defaultNode.position = [container.clientWidth / 2, container.clientHeight / 2];
+            editor.addNode(defaultNode);
+            editor.trigger('process');
         };
 
         initRete();
     }, []);
 
-    const handleDragStart = (event, componentName) => {
-        event.dataTransfer.setData('component', componentName);
-    };
-
     return (
         <div>
-            <div className="sidebar">
-                <h2>Blocks</h2>
-                <div
-                    className="block"
-                    draggable
-                    onDragStart={(event) => handleDragStart(event, 'Number')}
-                >
-                    Number Block
-                </div>
-                {/* Add more blocks here */}
-            </div>
             <div id="rete"></div>
         </div>
     );
