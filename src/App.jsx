@@ -3,6 +3,7 @@ import Rete from 'rete';
 import ConnectionPlugin from 'rete-connection-plugin';
 import VueRenderPlugin from 'rete-vue-render-plugin';
 import ContextMenuPlugin from 'rete-context-menu-plugin';
+import DockPlugin from 'rete-dock-plugin';
 
 const App = () => {
     useEffect(() => {
@@ -12,6 +13,12 @@ const App = () => {
             editor.use(ConnectionPlugin);
             editor.use(VueRenderPlugin);
             editor.use(ContextMenuPlugin);
+            editor.use(DockPlugin, {
+                container: document.querySelector('#dock'),
+                plugins: [VueRenderPlugin],
+                itemClass: 'dock-item',
+                scaleFactor: 0.8
+            });
 
             const engine = new Rete.Engine('demo@0.1.0');
 
@@ -59,8 +66,11 @@ const App = () => {
     }, []);
 
     return (
-        <div>
-            <div id="rete"></div>
+        <div className="app-container">
+            <div className="blocks-gui">
+                <div id="dock"></div>
+                <div id="rete"></div>
+            </div>
         </div>
     );
 };
